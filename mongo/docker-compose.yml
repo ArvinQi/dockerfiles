@@ -1,0 +1,40 @@
+version: '2'
+services:
+    mongo:
+        image: mongo
+        command: mongod -f /etc/mongo.conf
+        volumes:
+            - mongo1:/data/db
+            - ./mongo_yaml.conf:/etc/mongo.conf
+            - ./access.key:/etc/access.key
+        expose:
+            - 27017
+        ports:
+            - 27016:27017
+
+    mongo2:
+        image: mongo
+        command: mongod -f /etc/mongo.conf
+        volumes:
+            - mongo2:/data/db
+            - ./mongo_yaml.conf:/etc/mongo.conf
+            - ./mongo/access.key:/etc/access.key
+        expose:
+            - 27017
+        ports:
+            - 27018:27017
+    mongo3:
+        image: mongo
+        command: mongod -f /etc/mongo.conf
+        volumes:
+            - mongo3:/data/db
+            - ./mongo_yaml.conf:/etc/mongo.conf
+            - ./access.key:/etc/access.key
+        expose:
+            - 27017
+        ports:
+            - 27019:27017
+volumes:
+    mongo1:
+    mongo2:
+    mongo3:
